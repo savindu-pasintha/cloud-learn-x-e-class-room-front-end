@@ -1,4 +1,8 @@
 <h1>Sample profile information for login<br></h1>
+#https://github.com/js-simp/e-classroom_Beta-0.1.3
+#https://rtcsignalling-63cad.web.app
+#AWS ID - 045608842628 username - savindu_pasintha password - !ZmA946/L988zH9  &  0768755787sa/.S
+#
 <h2>Tutor</h2><br>
 username: naveend1<br>
 password: 123654789*q<br>
