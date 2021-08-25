@@ -1,0 +1,39 @@
+#helper-section {
+  width: 320px;
+  height: auto;
+  border: "1px solid black";
+  background-color: #c1ccd8;
+  padding: 10px;
+  float: left;
+}
+
+#irc-section {
+  display: flex;
+  flex-direction: column;
+}
+
+#irc-message-container {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  height: 600px;
+}
+
+.irc-message {
+  white-space: break-spaces;
+  word-wrap: break-word;
+  margin-top: 2px;
+  margin-right: 10px;
+}
+
+#irc-send #message-row {
+  display: flex;
+  flex-direction: row;
+}
+#irc-Entrybox {
+  height: 60px;
+}
+
+.message-highlight {
+  animation: highlight 3s;
+}

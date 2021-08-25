@@ -1,0 +1,21 @@
+#tutor-name {
+  font-size: 32px;
+  margin-top: 5%;
+  margin-bottom: 2%;
+}
+
+#session-card {
+  min-width: 1113px;
+  max-width: 1113px;
+  width: 1113px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#no-session-notification {
+  font-family: "Architects Daughter", cursive;
+  font-weight: lighter;
+  margin-top: 15%;
+  text-align: center;
+  font-size: 48px;
+}
