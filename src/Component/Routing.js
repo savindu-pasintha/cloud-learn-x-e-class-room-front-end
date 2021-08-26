@@ -8,8 +8,8 @@ function Routing() {
   return (
     <div >
           <Switch>
-            <Route path="/l" component={Login}  exact />
-            <Route path="/" component={Timer}  exact />
+            <Route path="/" component={Login}  exact />
+            <Route path="/t" component={Timer}  exact />
           </Switch>
     </div>
   );
