@@ -1,6 +1,8 @@
 <h1>Sample profile information for login<br></h1>
 #https://github.com/js-simp/e-classroom_Beta-0.1.3
-#https://rtcsignalling-63cad.web.app
+#fireabse hosting #https://rtcsignalling-63cad.web.app
+#backend- #https://dashboard.heroku.com/apps/bcend
+#developing https://cloudlearnx.herokuapp.com
 #AWS ID - 045608842628 username - savindu_pasintha password - !ZmA946/L988zH9  &  0768755787sa/.S
 #
 <h2>Tutor</h2><br>
