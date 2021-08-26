@@ -17,8 +17,11 @@ function Classroom(props) {
         // setSocket(io('http://localhost:5000'))
         //https://clouldlearnxbackend.herokuapp.com
         //https://bcend.herokuapp.com
-        setSocket(io('https://clouldlearnxbackend.herokuapp.com'));
+
+        const backEndURL = "https://clouldlearnxbackend.herokuapp.com" || "http://localhost:5000";
         
+        setSocket(io(backEndURL));
+
         console.log(socket);
         if(props.role === 'tutor'){
                 console.log(props.lessons) // all the titles
