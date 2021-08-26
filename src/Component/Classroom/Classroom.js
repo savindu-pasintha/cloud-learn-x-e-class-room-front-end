@@ -15,7 +15,10 @@ function Classroom(props) {
     
     useEffect(()=>{
         // setSocket(io('http://localhost:5000'))
-        setSocket(io('https://bcend.herokuapp.com'));
+        //https://clouldlearnxbackend.herokuapp.com
+        //https://bcend.herokuapp.com
+        setSocket(io('https://clouldlearnxbackend.herokuapp.com'));
+        
         console.log(socket);
         if(props.role === 'tutor'){
                 console.log(props.lessons) // all the titles
