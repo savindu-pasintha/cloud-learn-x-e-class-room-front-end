@@ -20,7 +20,7 @@ function Classroom(props) {
         //https://clouldlearnxbackend.herokuapp.com
         //https://bcend.herokuapp.com
 
-        const backEndURL = "http://localhost:5000";
+        const backEndURL = "https://clouldlearnxbackend.herokuapp.com" || "http://localhost:5000";
         setSocket(io(backEndURL));
        // console.log(socket);
 
