@@ -3,7 +3,6 @@ import db from '../Firebase/firebase.js'
 import Sessions from './Sessions'
 import './Home.css'
 import Classroom from '../Classroom/Classroom.js';
-import { DriveEtaTwoTone } from '@material-ui/icons';
 
 // the props for Sesssions component:
 // 
@@ -52,7 +51,10 @@ function Home(props) {
                     Date = {session.Date}
                     Time = {session.Time}
                     setLaunched = {setLaunched}
-                    SessionId = {session.SessionId} />
+                    SessionId = {session.SessionId}
+
+                   
+                    />
                 ))
                 }
             </div>
@@ -88,4 +90,4 @@ function Home(props) {
     
 }
 
-export default Home
+export default Home;

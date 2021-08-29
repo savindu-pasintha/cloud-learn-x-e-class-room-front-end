@@ -44,4 +44,22 @@ export default class Authentication {
         }
     }  
 
+
+ //create account
+  async userAccountFunction(uniqName,dataSet){
+       try{
+       await db
+            .collection("Logins")
+            .doc(uniqName)
+            .update(dataSet).then(() => {
+                alert("Account Created...");
+            }).catch((error) => {
+                window.alert("Registration Failed !.");
+            });
+
+        }catch(err){
+            console.log("Error in account create ..Authentication/Authentication.js page",err);
+        }
+   }
+
 }

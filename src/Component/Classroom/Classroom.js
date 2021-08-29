@@ -7,22 +7,23 @@ import db from '../Firebase/firebase.js'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import io from 'socket.io-client';
 import Chatbox from '../Chatbox/Chatbox';
-import './Classroom.css'
+import Timer from "../Timer/Timer";
+import T from "../Timer/T";
+import './Classroom.css';
 
 function Classroom(props) {
     const [socket, setSocket] = useState();
     const [slides, setSlides] = useState([]);
     
     useEffect(()=>{
-        // setSocket(io('http://localhost:5000'))
+        //setSocket(io('http://localhost:5000'))
         //https://clouldlearnxbackend.herokuapp.com
         //https://bcend.herokuapp.com
 
-        const backEndURL = "https://clouldlearnxbackend.herokuapp.com" || "http://localhost:5000";
-        
+        const backEndURL = "http://localhost:5000";
         setSocket(io(backEndURL));
+       // console.log(socket);
 
-        console.log(socket);
         if(props.role === 'tutor'){
                 console.log(props.lessons) // all the titles
             let LessonSlides = []
@@ -64,17 +65,26 @@ function Classroom(props) {
     const sessionId = props.sessionId;
     const role = props.role;
     
-    console.log(`You are ${username} and you have started session ${sessionId}`)
+    console.log(`You are ${username} and you have started session ${sessionId}`);
+
+   const firebaseLaunchedUpdate =()=>{
+
+   }
+
     if(role === "tutor" && socket !== undefined && slides.length === props.lessons.length){
+        firebaseLaunchedUpdate(); 
         console.log(slides, typeof(slides), slides.length);
         return (
             <div>
                 <AudioBridge 
                 username = {username}
                 sessionId = {sessionId}/>
+                  <T socket = {socket} val="3000" />
+                <Timer socket = {socket} val="3000" />
+              
                 <div className = 'interaction-area'>
                     <div className = 'chatbox'>
-                    <Chatbox   username = {username}   sessionId = {sessionId}   socket = {socket}/>
+                       <Chatbox   username = {username}   sessionId = {sessionId}   socket = {socket}/>
                     </div>
                     <div className = 'whiteboard'>
                         <Whiteboard
@@ -91,13 +101,13 @@ function Classroom(props) {
     else if(role === "student" && socket !== undefined){
         return(
             <div>
-                <StudentAudioBridge username = {username} sessionId = {sessionId}/>
+                <StudentAudioBridge username = {username} sessionId = {sessionId} />
                 <div className = 'interaction-area'>
                     <div className = 'chatbox'>
-                        <Chatbox   username = {username}   sessionId = {sessionId}   socket = {socket}/>
+                    <Chatbox   username = {username}   sessionId = {sessionId}   socket = {socket}/>
                     </div>
                     <div className = 'whiteboard'> 
-                    <WhiteboardStudent username = {username} sessionId = {sessionId} socket = {socket}/>
+                     <WhiteboardStudent username = {username} sessionId = {sessionId} socket = {socket}/>
                     </div>
                 </div>
             </div>
@@ -113,4 +123,4 @@ function Classroom(props) {
     
 }
 
-export default Classroom
+export default Classroom;

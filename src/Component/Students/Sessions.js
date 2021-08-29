@@ -1,5 +1,7 @@
-import React from 'react'
+import React,{useEffect,useState,useRef} from 'react'
 import { Button } from '@material-ui/core';
+import { Socket } from 'socket.io-client';
+import ButtonEnable from '../ButtonEnable/ButtonEnable';
 
 // the props will be:
 // props.Name : students name
@@ -10,10 +12,41 @@ import { Button } from '@material-ui/core';
 // props.Time : Time the session is booked for
 // ;
 function Sessions(props) {
+    const [enabled,setEnabled] = useState(true);
+    const socketRef = useRef(props.socket);
+
+    
+    useEffect(() => {
+        isLaunchedTutor();    
+    }, []);
+
+    //chek DatabaseTutor session is Launched & Not
+    const isLaunchedTutor = async ()=>{
+        try{
+            if(props.SessionId!==null)
+            {
+                var obj = new ButtonEnable();
+               var res =  await obj.firebaseListenTutorIsLaunched(props.SessionId);
+               console.log(res);
+               if(res){
+                setEnabled(false);
+               }else{
+                setEnabled(true);
+               }
+              
+            }else{
+                console.log("Error : student session id cannot read in props.SessionId in the session.js page");
+            }
+        }catch(err){
+            console.log(err);
+        }  
+    }
+
+
+
     return (
-        <div className =  "session-card-block">
-            
-                {/* ----------------------------------------This is is the title bar section ----------------------------------------------------------------------------------- */}
+        <div className = "session-card-block">
+            {/* ----------------------------------------This is is the title bar section ----------------------------------------------------------------------------------- */}
                 <div className="title-bar">
                     <div className="card-block__time">
                         {props.Time}
@@ -43,6 +76,7 @@ function Sessions(props) {
                         });
                         }
                         }
+                        disabled={enabled}
                         >Start Session</Button>
                         </div>
                     </div>

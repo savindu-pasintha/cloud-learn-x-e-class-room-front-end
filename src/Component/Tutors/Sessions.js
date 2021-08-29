@@ -10,13 +10,10 @@ import './Sessions.css';
 // props.Year : Students school year
 // props.Lessons: Lesson array (length 3)
 // props.Time : Time the session is booked for
-// ;
+
 
 function Sessions(props) {
-
     const [studentInfo, setStudentInfo] = useState();
-
-
     useEffect(() => {
         let docRef = db.collection('Students').doc(`${props.StudentId}`)
         docRef.get().then((doc) => {
@@ -74,7 +71,8 @@ function Sessions(props) {
                     <div className="card-block__button-wrapper">
                         <div id="learning-session-1857904-button" className="with-tooltip" title="You are currently not able to launch this session as no student has been assigned
                             yet or the session is not within 10 minutes of the start time">
-                        <Button className="button button--small button--rewards-board button--hard-disable" variant="contained" color="primary"
+                        <Button className="button button--small button--rewards-board button--hard-disable"
+                         variant="contained" color="primary"
                         data-session-start="1625488200"
                         onClick ={
                             () =>         
@@ -83,6 +81,8 @@ function Sessions(props) {
                                 'sessionId' : props.SessionId, 
                                 'lessons' : props.Lessons
                         });
+                        //timer.js access bellow
+                         window.localStorage.setItem("session-start-time",props.Time);
                         }
                         }
                             

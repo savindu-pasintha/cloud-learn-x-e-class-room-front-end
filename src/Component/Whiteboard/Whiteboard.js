@@ -11,7 +11,7 @@ import StopIcon from '@material-ui/icons/Stop';
 import RadioButtonUncheckedOutlinedIcon from '@material-ui/icons/RadioButtonUncheckedOutlined';
 import Brightness1Icon from '@material-ui/icons/Brightness1';
 import TimelineIcon from '@material-ui/icons/Timeline';
-
+import ButtonEnable from '../ButtonEnable/ButtonEnable';
 
 
 import './Whiteboard.css';
@@ -36,6 +36,7 @@ const Whiteboard = (props) => {
 
   // const socketRef = useRef(); using Reference from props
   const socketRef = useRef(props.socket);
+  const [fsupdateCheck,setFsupdateCheck]=useState(true);
 
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
@@ -100,6 +101,7 @@ const Whiteboard = (props) => {
         console.log("Current data: ", doc.data());
         setAnnotations(doc.data());
     });
+
   }, []);
 
 
@@ -139,8 +141,26 @@ useEffect(() => {
     current.x = keyStartPoint[0]
     current.y = keyStartPoint[1]
   }
-}, [keyStartPoint])
+}, [keyStartPoint]);
 
+useEffect(()=>{
+  firebaseLaunchedUpdated();
+},[]);
+const firebaseLaunchedUpdated = async()=>{
+  //firebase Lauched update to enable student session buttons
+  if (fsupdateCheck) {
+    var obj = new ButtonEnable();
+    var res = await obj.firebaseLaunchedUpdate(props.sessionId);
+    if (!res) {
+      setFsupdateCheck(true);
+      console.log("update-", fsupdateCheck);
+    } else {
+      setFsupdateCheck(false);
+      console.log("update-", fsupdateCheck);
+    }
+  }
+}
+  
  // ----------------------- socket.io connection ----------------------------
  const onDrawingEvent = (data) => {
   draw(data.x0, data.y0, data.x1, data.y1, data.toolName, data.color);
