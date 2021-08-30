@@ -35,7 +35,6 @@ export default class ButtonEnable{
                 };
              });
             });
-            
             return res;
         } catch (error) {
             console.log(error);
