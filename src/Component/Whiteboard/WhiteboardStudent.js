@@ -109,6 +109,7 @@ useEffect(() => {
 
  // ----------------------- socket.io connection ----------------------------
  const onDrawingEvent = (data) => {
+  console.log("STUDENT SIDE - socket Listening is working",data);
   draw(data.x0, data.y0, data.x1, data.y1, data.toolName, data.color);
 }
 

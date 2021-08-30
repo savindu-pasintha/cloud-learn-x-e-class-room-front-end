@@ -19,9 +19,10 @@ function Classroom(props) {
         //setSocket(io('http://localhost:5000'))
         //https://clouldlearnxbackend.herokuapp.com
         //https://bcend.herokuapp.com
-
-        const backEndURL = "http://localhost:5000";
-        setSocket(io(backEndURL));
+//fix xhr cors --> setSocket(io(backEndURL,{ transports : ['websocket', 'polling', 'flashsocket'] }));
+       
+        const backEndURL = "https://clouldlearnxbackend.herokuapp.com" || "http://localhost:5000" ;
+        setSocket(io(backEndURL,{ transports : ['websocket', 'polling', 'flashsocket'] }));
        // console.log(socket);
 
         if(props.role === 'tutor'){
