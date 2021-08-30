@@ -8,7 +8,6 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 import io from 'socket.io-client';
 import Chatbox from '../Chatbox/Chatbox';
 import Timer from "../Timer/Timer";
-import T from "../Timer/T";
 import './Classroom.css';
 
 function Classroom(props) {
@@ -80,9 +79,7 @@ function Classroom(props) {
                 <AudioBridge 
                 username = {username}
                 sessionId = {sessionId}/>
-                  <T socket = {socket} val="3000" />
-                <Timer socket = {socket} val="3000" />
-              
+                <Timer socket = {socket} />
                 <div className = 'interaction-area'>
                     <div className = 'chatbox'>
                        <Chatbox   username = {username}   sessionId = {sessionId}   socket = {socket}/>
