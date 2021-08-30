@@ -21,6 +21,7 @@ function Sessions(props) {
                 // console.log("Document data:", doc.data().Info);
                 const info = doc.data().Info;
                 setStudentInfo({'Name' : info.Name, 'SchoolId' : info.SchoolId, 'Year' : info.Year})
+         
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
@@ -76,10 +77,13 @@ function Sessions(props) {
                         data-session-start="1625488200"
                         onClick ={
                             () =>         
-                        {
+                        { //reasign values to props variable and pass again return to home.js
+                    
                             props.setLaunched({
                                 'sessionId' : props.SessionId, 
-                                'lessons' : props.Lessons
+                                'lessons' : props.Lessons,
+                                'SessionStartEpochTime':props.epoch,
+                                'SessionStartTime':props.Time
                         });
                         //timer.js access bellow
                          window.localStorage.setItem("session-start-time",props.Time);

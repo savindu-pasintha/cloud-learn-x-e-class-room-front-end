@@ -5,42 +5,39 @@ class Timer extends Component {
   constructor(props) {
     super(props);
      this.state = {
-        sessionEndTime: "",
-        sessionStartTime: "",
+        sessionStartEpochTime: props.SessionStartEpochTime,
+
+        sessionStartTime: new Date(props.SessionStartEpochTime*1000).toLocaleString(),
+
+        sessionEndTime:new Date((parseInt(props.SessionStartEpochTime)+3600)*1000).toLocaleString(),
+
+        nowLocalEpochTime: Math.floor(new Date().getTime()/1000.0),
+
+        endLocalEpochTime: parseInt(props.SessionStartEpochTime)+3600,
+
         min: "",
         sec: "",
-        counter: 3600,
-        serverTime: "serverJoinTime",
-        posts: [],
-        comments: [],
-        count: 3600,
+        counter:1000,
+        serverTime: "00:00:00",
         socketJ: props.socket,
-        ourLocalTime:new Date().toLocaleTimeString()
-      };
+        ourLocalTime:new Date().toLocaleTimeString(),
+        };
 
       this.state.socketJ.on("session-start-time",(time)=>{
         this.setState({serverTime: time});
       }); 
-  }
 
- 
-  componentWillMount() {
-   this.setState({ sessionStartTime: window.localStorage.getItem("session-start-time")});   
-   this.endTimeCalculate();
+      console.log(props.SessionStartEpochTime,props.SessionStartTime)
   }
-
+  componentWillMount() { this.calculateSessionEndToTimeBalance();}
   componentDidMount() {}
-
-  componentWillUnmount () {
-    clearInterval(this.Timer);
-  }
-
-  endTimeCalculate = () =>{
-   // var hr = parseInt(this.state.sessionStartTime.split(":")[0]) + 1;
-   // var mt = this.state.sessionStartTime.split(":")[1];
-    this.setState({ sessionEndTime: this.state.sessionStartTime});
-    console.log(this.state.sessionStartTime)
-  }
+  componentWillUnmount () { clearInterval(this.Timer);}
+  calculateSessionEndToTimeBalance = () =>{
+    var endTimeEpoch = this.state.endLocalEpochTime;
+    var nowTimeEpoch = parseInt(this.state.nowLocalEpochTime);
+    var waitingTime = endTimeEpoch - nowTimeEpoch;
+    this.setState({counter: waitingTime});    
+    }
   tick =()=> {
     //this.setState({count: (this.state.count - 1)});
     this.setState({counter: this.state.counter - 1});
@@ -74,20 +71,9 @@ class Timer extends Component {
     this.startTimer();
     return (
       <div>
-        class component
-        <button onClick={this.startTimer.bind(this)}>Start</button>
-        <button onClick={this.stopTimer.bind(this)}>Stop</button>
-        <br />
-        session-start-time {this.state.sessionStartTime}
-        <br />
-        session-end-time {this.state.sessionEndTime}
-        <br />
-        jon Server : {this.state.serverTime+"  Local :"+this.state.ourLocalTime}
-        <br />
-         <p>{this.state.counter}--{this.state.count}s</p>
-        <br />
-        <p style={{fontSize:"30px"}}>{this.state.min}<span>m :</span> {this.state.sec}<span>s</span></p> 
-        <br />
+       <p style={{fontSize:"10px",padding:"0px"}}>{this.state.sessionStartTime} | {this.state.sessionEndTime}</p>
+       <p style={{fontSize:"10px",padding:"0px",margin:"0px"}}>JOIN SERVER {this.state.serverTime+"  LOCAL : "+this.state.ourLocalTime}</p>
+       <p style={{fontSize:"30px",padding:"0px"}}>{this.state.min}<span>m :</span> {this.state.sec}<span>s</span></p> 
       </div>
     );
   }

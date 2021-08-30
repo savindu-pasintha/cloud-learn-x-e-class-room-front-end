@@ -4,6 +4,7 @@ import Sessions from './Sessions'
 import './Home.css'
 import Classroom from '../Classroom/Classroom.js';
 
+
 // the props for Sesssions component:
 // props.Name : students name
 // props.StudentId : students id
@@ -14,11 +15,13 @@ import Classroom from '../Classroom/Classroom.js';
 // ;
 
 function Home(props) {
+
     const [name, setName] = useState('');
     const [sessionsInfo, setSessionsInfo] = useState();
     const userId = props.user;
     const [launched, setLaunched] = useState();
-    
+  //  const [sessionStartTime,setSessionStartTime]=useState();
+  
     useEffect(() => {
         let docRef = db.collection("Tutors").doc(`${userId}`);
         //query the sessions that are on that particular day
@@ -68,6 +71,8 @@ function Home(props) {
             <Classroom
             sessionId = {launched.sessionId}
             lessons = {launched.lessons}
+            SessionStartEpochTime = {launched.SessionStartEpochTime}
+            SessionStartTime ={launched.SessionStartTime}
             username = {name}
             role = 'tutor'
         />

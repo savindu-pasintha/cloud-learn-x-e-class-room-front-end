@@ -1,7 +1,7 @@
 import React, { useEffect, useState , useRef } from 'react';
 import './Chatbox.css';
 import Button from '@material-ui/core/Button';
-import db from '../Firebase/firebase'
+import db from '../Firebase/firebase';
 
 
 /*
@@ -99,7 +99,7 @@ const Chatbox = (props) => {
         if(msg.message){
             msg.sender = props.username.split(' ')[0];
             // msg.time = 
-            inputMsg(msg, true)
+            inputMsg(msg, true);
         }
     
  }
@@ -116,10 +116,10 @@ const Chatbox = (props) => {
                 </div>
                 <input 
                         id="irc-Entrybox"
-                        onKeyPress={(e) => {sendMessage(e,'key')}} 
+                        onKeyPress={(e) => {sendMessage(e,'key');}} 
                         placeholder="Enter your message here..."
                 />
-                <Button id = "irc-sendButton" variant="contained" style = {{'margin' : '0 auto', 'width': '100px'}} onClick={(e) => {sendMessage(e, 'button')}}>
+                <Button id = "irc-sendButton" variant="contained" style = {{'margin' : '0 auto', 'width': '100px'}} onClick={(e) => {sendMessage(e, 'button');}}>
                     Send
                 </Button>
             </div>
