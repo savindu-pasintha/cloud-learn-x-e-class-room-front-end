@@ -21,7 +21,6 @@ function Home(props) {
     const userId = props.user;
     useEffect(() => {
         let docRef = db.collection("Students").doc(`${userId}`);
-
         docRef.get().then((doc) => {
             if (doc.exists) {
                 // console.log("Document data:", doc.data().Info);
@@ -50,10 +49,10 @@ function Home(props) {
                     SchoolId = {schoolId}
                     Date = {session.Date}
                     Time = {session.Time}
+                    SessionStartEpochTime = {session.epochTime}
+                    SessionStartTime = {session.Time}
                     setLaunched = {setLaunched}
                     SessionId = {session.SessionId}
-
-                   
                     />
                 ))
                 }
@@ -75,6 +74,8 @@ function Home(props) {
         return(
             <Classroom
             sessionId = {launched.sessionId}
+            SessionStartTime = {launched.sessionStartTime}
+            sessionStartEpochTime = {launched.sessionStartEpochTime}
             username = {name}
             role = 'student'
         />

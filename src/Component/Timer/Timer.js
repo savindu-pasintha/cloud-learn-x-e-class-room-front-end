@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
+ /* 
+   epoch time is a milisecond to datay date and time == 1666600000~ 
+   https://www.epochconverter.com
+   meke karala thinne tutor welawat klin ho pasuwa log unam eyata tawa kochchara welawak thinwad kiyl bll session ek end kenn
+ */
 class Timer extends Component {
+ 
   constructor(props) {
     super(props);
      this.state = {
@@ -33,6 +38,7 @@ class Timer extends Component {
   componentDidMount() {}
   componentWillUnmount () { clearInterval(this.Timer);}
   calculateSessionEndToTimeBalance = () =>{
+
     var endTimeEpoch = this.state.endLocalEpochTime;
     var nowTimeEpoch = parseInt(this.state.nowLocalEpochTime);
     var waitingTime = endTimeEpoch - nowTimeEpoch;

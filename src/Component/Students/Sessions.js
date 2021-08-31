@@ -13,12 +13,13 @@ import ButtonEnable from '../ButtonEnable/ButtonEnable';
 // ;
 function Sessions(props) {
     const [enabled,setEnabled] = useState(true);
+    const [count,setCount]=useState(10);
     const socketRef = useRef(props.socket);
 
     
-    useEffect(() => {
-        isLaunchedTutor();    
-    }, []);
+   useEffect(() => {
+    isLaunchedTutor();  
+  }, []);
 
     //chek DatabaseTutor session is Launched & Not
     const isLaunchedTutor = async ()=>{
@@ -26,7 +27,7 @@ function Sessions(props) {
             if(props.SessionId!==null)
             {
                 var obj = new ButtonEnable();
-               var res =  await obj.firebaseListenTutorIsLaunched(props.SessionId);
+               var res =  await obj.student_Waiting_For_Start_Session_Time_To_Enable_Button(props.SessionStartEpochTime,props.SessionId);
                console.log(res);
                if(res){
                 setEnabled(false);
@@ -41,12 +42,11 @@ function Sessions(props) {
             console.log(err);
         }  
     }
-
-
-
+  
     return (
-        <div className = "session-card-block">
-            {/* ----------------------------------------This is is the title bar section ----------------------------------------------------------------------------------- */}
+    <div className = "session-card-block">
+           
+            { /* ----------------------------------------This is is the title bar section ----------------------------------------------------------------------------------- */}
                 <div className="title-bar">
                     <div className="card-block__time">
                         {props.Time}
@@ -72,7 +72,9 @@ function Sessions(props) {
                             () =>         
                         {
                             props.setLaunched({
-                                'sessionId' : props.SessionId 
+                                'sessionId' : props.SessionId ,
+                                'sessionStartEpochTime' : props.SessionStartEpochTime,
+                                "sessionStartTime" : props.SessionStartTime
                         });
                         }
                         }

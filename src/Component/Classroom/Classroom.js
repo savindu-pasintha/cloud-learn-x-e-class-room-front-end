@@ -103,6 +103,9 @@ function Classroom(props) {
         return(
             <div>
                 <StudentAudioBridge username = {username} sessionId = {sessionId} />
+                <Timer socket = {socket} 
+                SessionStartTime = {props.SessionStartTime}
+                SessionStartEpochTime = {props.sessionStartEpochTime}/>
                 <div className = 'interaction-area'>
                     <div className = 'chatbox'>
                     <Chatbox   username = {username}   sessionId = {sessionId}   socket = {socket}/>
